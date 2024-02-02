@@ -1,6 +1,6 @@
 # My evolving tmux + powerline config
 
-See below for gruvbox theme.  It's not that great, IMO.  Awesome TMUX suggests oh-my-tmux, which just works, I want to see what I can do on my own because of how unwieldy its .conf was.
+See below for gruvbox theme.  Awesome TMUX suggests oh-my-tmux, which just works, but I want to see what I can do on my own because of how unwieldy its .conf was.
 
 
 
