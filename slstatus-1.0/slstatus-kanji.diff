@@ -1,0 +1,51 @@
+--- a/components/kanji.c
++++ b/components/kanji.c
+@@ -0,0 +1,14 @@
++/* Written by Madison Lynch <madi@mxdi.xyz> */
++#include <time.h>
++
++const char *
++kanji(const char *unused) {
++	char *kanji[] = {"日", "月", "火", "水", "木", "金", "土"};
++	time_t t=time(NULL);
++	struct tm tm=*localtime(&t);
++	int map[]={0, 3, 2, 5, 0, 3, 5, 1, 4, 6, 2, 4},
++	    m=tm.tm_mon+1,
++	    y=tm.tm_year+1900-(m<3),
++	    wd=(y+y/4-y/100+y/400+map[m-1]+tm.tm_mday)%7;
++	return kanji[wd];
++}
+
+--- a/config.def.h
++++ b/config.def.h
+@@ -31,6 +31,7 @@
+  * hostname            hostname                        NULL
+  * ipv4                IPv4 address                    interface name (eth0)
+  * ipv6                IPv6 address                    interface name (eth0)
++ * kanji               japanese day of week kanji      NULL
+  * kernel_release      `uname -r`                      NULL
+  * keyboard_indicators caps/num lock indicators        format string (c?n?)
+  *                                                     see keyboard_indicators.c
+
+--- a/Makefile
++++ b/Makefile
+@@ -14,6 +14,7 @@
+ 	components/entropy\
+ 	components/hostname\
+ 	components/ip\
++	components/kanji\
+ 	components/kernel_release\
+ 	components/keyboard_indicators\
+ 	components/keymap\
+
+--- a/slstatus.h
++++ b/slstatus.h
+@@ -31,6 +31,9 @@
+ const char *ipv4(const char *interface);
+ const char *ipv6(const char *interface);
+ 
++/* kanji */
++const char *kanji(const char *unused);
++
+ /* kernel_release */
+ const char *kernel_release(const char *unused);
