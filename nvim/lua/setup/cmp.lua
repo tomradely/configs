@@ -77,3 +77,27 @@
   require('lspconfig').yamlls.setup {
 	  capabilities = capabilities
   }
+  require('lspconfig').ansiblels.setup {
+	  capabilities = capabilities
+  }
+  require('lspconfig').bashls.setup {
+	  capabilities = capabilities
+  }
+    require('lspconfig').clangd.setup {
+	  capabilities = capabilities
+  }
+  require('lspconfig').cmake.setup {
+	  capabilities = capabilities
+  }
+  require('lspconfig').pyright.setup {
+	  capabilities = capabilities
+  }
+  require('lspconfig').golangci_lint_ls.setup {
+	  capabilities = capabilities
+  }
+  require('lspconfig').sqls.setup {
+	  capabilities = capabilities
+  }
+  require('lspconfig').tsserver.setup {
+	  capabilities = capabilities
+  }
