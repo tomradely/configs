@@ -53,7 +53,7 @@ static const Layout layouts[] = {
 	{ "",      tile },    /* first entry is default */
 	{ "",      NULL },    /* no layout function means floating behavior */
 	{ "",      monocle },
-	{ "畳",       tatami },
+	{ "畳",     tatami },
 };
 
 /* custom symbols for nr. of clients in monocle layout */
@@ -158,8 +158,8 @@ static const Button buttons[] = {
  * ud means up and down
  */
 static Gesture gestures[] = {
-	{ "u",  setlayout, {.v = &layouts[2]} },
-	{ "d",  setlayout, {.v = &layouts[0]} },
-	{ "l",  shiftviewclients,  { .i = +1 } },
-	{ "r",  shiftviewclients,  { .i = -1 } },
+	{ "u", setlayout, {.v = &layouts[2]} },
+	{ "d", setlayout, {.v = &layouts[1]} },
+	{ "l", shiftview, { .i = +1 } },
+	{ "r", shiftview, { .i = -1 } },
 };
