@@ -11,11 +11,19 @@ static const int topbar             = 1;        /* 0 means bottom bar */
 #define ICONSPACING 10 /* space between icon and title */
 static const char *fonts[]          = { "MesloLGS NF:size=14", "Microsoft YaHei:size=12" };
 static const char dmenufont[]       = "MesloLGS NF:size=12";
-static const char *brighter[] 	    = { "brightnessctl", "set", "5%+", NULL };
-static const char *dimmer[]	    = { "brightnessctl", "set", "5%-", NULL };
-static const char *up_vol[]	    = { "pactl", "set-sink-volume", "@DEFAULT_SINK@", "+5%", NULL };
-static const char *down_vol[]	    = { "pactl", "set-sink-volume", "@DEFAULT_SINK@", "-5%", NULL };
-static const char *mute_vol[]	    = { "pactl", "set-sink-mute", "@DEFAULT_SINK@", "toggle", NULL };
+//static const char *brighter[]     = { "brightnessctl", "set", "5%+", NULL };
+static const char *brighter[]	    = {"/home/tom/.config/dunst/backlight.sh", "up", NULL };
+//static const char *dimmer[]	    = { "brightnessctl", "set", "5%-", NULL };
+static const char *dimmer[]	    = {"/home/tom/.config/dunst/backlight.sh", "down", NULL };
+//static const char *up_vol[]	    = { "pactl", "set-sink-volume", "@DEFAULT_SINK@", "+5%", NULL };
+static const char *up_vol[]	    = {"/home/tom/.config/dunst/volume.sh", "up", NULL};
+//static const char *down_vol[]	    = { "pactl", "set-sink-volume", "@DEFAULT_SINK@", "-5%", NULL };
+static const char *down_vol[]	    = {"/home/tom/.config/dunst/volume.sh", "down", NULL};
+//static const char *mute_vol[]	    = { "pactl", "set-sink-mute", "@DEFAULT_SINK@", "toggle", NULL };
+static const char *mute_vol[]	    = {"/home/tom/.config/dunst/volume.sh", "mute", NULL};
+static const char *next[]	    = {"playerctl", "next", NULL};
+static const char *prev[]	    = {"playerctl", "previous", NULL};
+static const char *play[]	    = {"playerctl", "play-pause", NULL};
 static unsigned int baralpha        = 0xd0;
 static unsigned int borderalpha     = 0xd0;
 static const char col_gray1[]       = "#3c3836";
@@ -78,11 +86,14 @@ static const Key keys[] = {
 	/* modifier                     key        function        argument */
 	{ 0,				XK_Print,  spawn,	   SHCMD("~/.dwm/screenshot.sh") },
 	{ ShiftMask,			XK_Print,  spawn,	   SHCMD("~/.dwm/screeenshotsel.sh") },
-	{ 0,		 XF86XK_MonBrightnessDown, spawn,	   {.v = dimmer } },
-	{ 0,		 XF86XK_MonBrightnessUp,   spawn,	   {.v = brighter } },
+	{ 0,		XF86XK_MonBrightnessDown,  spawn,	   {.v = dimmer } },
+	{ 0,		XF86XK_MonBrightnessUp,    spawn,	   {.v = brighter } },
 	{ 0,		XF86XK_AudioMute,	   spawn,	   {.v = mute_vol } },
 	{ 0,		XF86XK_AudioLowerVolume,   spawn,	   {.v = down_vol } },
 	{ 0,		XF86XK_AudioRaiseVolume,   spawn,	   {.v = up_vol } },
+	{ 0,		XF86XK_AudioNext,   	   spawn,	   {.v = next } },
+	{ 0,		XF86XK_AudioPrev,   	   spawn,	   {.v = prev } },
+	{ 0,		XF86XK_AudioPlay,   	   spawn,	   {.v = play } },
 	{ MODKEY,			XK_o,	shiftviewclients,  { .i = +1 } },
 	{ MODKEY|ShiftMask,		XK_o,	 shiftview,	   { .i = +1 } },
 	{ MODKEY|ShiftMask,		XK_i,	 shiftview,	   { .i = -1 } },
