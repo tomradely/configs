@@ -1,0 +1,16 @@
+--- slock-orig/slock.c	2022-04-29 17:07:13.872268452 -0400
++++ slock.c	2022-04-29 17:04:53.424073165 -0400
+@@ -16,9 +17,13 @@
+ #include <unistd.h>
+ #include <sys/types.h>
+ #include <X11/extensions/Xrandr.h>
++#ifdef XINERAMA
++#include <X11/extensions/Xinerama.h>
++#endif
+ #include <X11/keysym.h>
+ #include <X11/Xlib.h>
+ #include <X11/Xutil.h>
++#include <Imlib2.h>
+ 
+ #include "arg.h"
+ #include "util.h"

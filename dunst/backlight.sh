@@ -11,13 +11,13 @@ function get_brightness {
 function send_notification {
     brightness=`get_brightness`
     # Send the notification
-     dunstify -i placeholder -t 8000 -r 2593 -u normal -h int:value:"$brightness" "Brightness: ${brightness}"
+     dunstify -i ~/.config/dunst/sysicon/dialog-information-symbolic.symbolic.png -t 8000 -r 2593 -u normal -h int:value:"$brightness" "Brightness: ${brightness}"
 }
 
 function send_notification1 {
     brightness=`get_brightness`
     # Send the notification
-     dunstify -i placeholder -t 8000 -r 2593 -u normal -h int:value:"$brightness" "Brightness: ${brightness}"
+     dunstify -i ~/.config/dunst/sysicon/dialog-information-symbolic.symbolic.png -t 8000 -r 2593 -u normal -h int:value:"$brightness" "Brightness: ${brightness}"
 }
 case $1 in
     up)

@@ -67,6 +67,7 @@ static const char unknown_str[] = "n/a";
  */
 static const struct arg args[] = {
 	/* function format          argument */
+//	{ run_command, "[ %s ]", "qdbus org.fcitx.Fcitx5 /controller org.fcitx.Fcitx.Controller1.CurrentInputMethod" }, /* this seems to knock out fcitx5 at the same time as properly reporting the input method */
 	{ alsa_master_vol, "[ %s]", NULL },
 	{ netspeed_rx, "[ 󰖩 %sB/s]", "wlp1s0" },
 	{ battery_state, "[ %s ", "BAT0" },
