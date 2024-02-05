@@ -67,10 +67,15 @@ static const char unknown_str[] = "n/a";
  */
 static const struct arg args[] = {
 	/* function format          argument */
-	{ run_command, "[ 󰓃 %4s ]", "amixer sget Master | awk -F\"[][]\" '/%/ { print $2 }' | head -n1" },
-	{ netspeed_rx, "[ 󰖩 %sB/s ]", "wlp1s0" },
-	{ ram_perc, "[ 󰘚 %s%% ]", NULL },
+//	{ run_command, "[ %s ]", "qdbus org.fcitx.Fcitx5 /controller org.fcitx.Fcitx.Controller1.CurrentInputMethod | awk '{print $2} { if ($2=="") print $1 } {if ($2=="ru") print "ру" } { if ($1=="pinyin" print "拼" }' FS=-" },
+//	{ run_command, "[ %s ]", "qdbus org.fcitx.Fcitx5 /controller org.fcitx.Fcitx.Controller1.CurrentInputMethod | awk '{print $2 } { if ($2==``) print $1 }' FS=-" },
+//	{ run_command, "[ %s ]", "qdbus org.fcitx.Fcitx5 /controller org.fcitx.Fcitx.Controller1.CurrentInputMethod | awk '{print $2}' FS=-" }, /* this last line works, but seems to impact stability, and in any case doesn't report pinyin.  the two above do not work. */
+	{ wifi_perc, "[ 󰖩 %s%%", "wlp1s0" },
+	{ netspeed_rx, " 󰛴 %sB/s]", "wlp1s0" },
+	{ alsa_master_vol, "[ %s]", NULL },
 	{ battery_state, "[ %s ", "BAT0" },
-	{ battery_perc, "%s%% ]", "BAT0" },
-	{ datetime, "%s", "[ 󱑇 %T ]" },
+	{ battery_perc, "%s%%]", "BAT0" },
+	{ run_command, "[ 󰃭 %s", "lunarcal --view=d | grep 癸卯 | awk '{print$2$3}'" },
+	{ kanji, " %s", NULL },
+	{ datetime, " 󱑇 %s]", "%R" },
 };
