@@ -14,26 +14,19 @@ function is_mute {
 
 function send_notification {
     volume=`get_volume`
-    # Make the bar with the special character ─ (it's not dash -)
-    # https://en.wikipedia.org/wiki/Box-drawing_character
     bar=$(seq -s "─" $(($volume / 2)) | sed 's/[0-9]//g')
-    # Send the notification
-     dunstify -i ~/.config/dunst/sysicon/audio-volume-high-symbolic.symbolic.png -t 8000 -r 2593 -u normal -h int:value:"$volume" "Volume: ${volume}%"
+    pkill -RTMIN+11 dwmblocks && dunstify -i ~/.config/dunst/sysicon/audio-volume-high-symbolic.symbolic.png -t 8000 -r 2593 -u normal -h int:value:"$volume" "Volume: ${volume}%"
 }
 
 function send_notification1 {
     volume=`get_volume`
-    # Make the bar with the special character ─ (it's not dash -)
-    # https://en.wikipedia.org/wiki/Box-drawing_character
     bar=$(seq -s "─" $(($volume / 2)) | sed 's/[0-9]//g')
-    # Send the notification
-     dunstify -i ~/.config/dunst/sysicon/audio-volume-low-symbolic.symbolic.png -t 8000 -r 2593 -u normal -h int:value:"$volume" "Volume: ${volume}%"
+    pkill -RTMIN+11 dwmblocks && dunstify -i ~/.config/dunst/sysicon/audio-volume-low-symbolic.symbolic.png -t 8000 -r 2593 -u normal -h int:value:"$volume" "Volume: ${volume}%"
 }
 case $1 in
     up)
 	# Set the volume on (if it was muted)
 	amixer -D pulse set Master on > /dev/null
-	# Up the volume (+ 2%)
 	amixer -D pulse sset Master 2%+ > /dev/null
 	send_notification
 	;;
@@ -46,7 +39,7 @@ case $1 in
     	# Toggle mute
 	amixer -D pulse set Master 1+ toggle > /dev/null
 	if is_mute ; then
-        dunstify -i ~/.config/dunst/sysicon/audio-volume-muted-symbolic.symbolic.png -t 8000 -r 2593 -u normal "Volume: Mute"
+        pkill -RTMIN+11 dwmblocks && dunstify -i ~/.config/dunst/sysicon/audio-volume-muted-symbolic.symbolic.png -t 8000 -r 2593 -u normal "Volume: Mute"
     else
         send_notification
 	fi
