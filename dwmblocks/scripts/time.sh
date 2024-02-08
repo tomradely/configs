@@ -10,4 +10,4 @@ case $(date '+%u') in
 	"6") day="土" ;;
 	"7") day="日" ;;
 esac
-printf " %s %s %s]" "$day" "$timeicon" "$time"
+printf " %s %s %s " "$day" "$timeicon" "$time"

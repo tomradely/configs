@@ -20,4 +20,4 @@ update() {
 rx=$(update /sys/class/net/[ew]*/statistics/rx_bytes)
 #tx=$(update /sys/class/net/[ew]*/statistics/tx_bytes)
 
-printf "[ %s󰛴 %4sB %s]" "$wifiicon" $(numfmt --to=iec $rx) "$tunicon"
+printf " %s󰛴 %4sB %s" "$wifiicon" $(numfmt --to=iec $rx) "$tunicon"

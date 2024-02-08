@@ -6,4 +6,4 @@ case "$(cat "/sys/class/power_supply/BAT0/status" 2>&1)" in
 	"Charging") status="󰂅" ;;
 	"Discharging") status="󱟞" ;;
 esac
-printf "[ %s %s%%]" "$status" "$capacity"
+printf " %s %s%% " "$status" "$capacity"

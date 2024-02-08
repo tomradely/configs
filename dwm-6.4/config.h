@@ -58,15 +58,15 @@ static const int resizehints = 0;    /* 1 means respect size hints in tiled resi
 static const int lockfullscreen = 1; /* 1 will force focus on the fullscreen window */
 static const Layout layouts[] = {
 	/* symbol     arrange function */
-	{ "",      tile },    /* first entry is default */
-	{ "",      NULL },    /* no layout function means floating behavior */
-	{ "",      monocle },
-	{ "畳",     tatami },
+	{ " ",      tile },    /* first entry is default */
+	{ " ",      NULL },    /* no layout function means floating behavior */
+	{ " ",      monocle },
+	{ "畳 ",     tatami },
 };
 
 /* custom symbols for nr. of clients in monocle layout */
 /* when clients >= LENGTH(monocles), uses the last element */
-static const char *monocles[] = { "󰎤", "󰼐", "󰼑", "󰼒", "󰼓", "󰼔", "󰼕", "󰼖", "󰼗", "󰼘" };
+static const char *monocles[] = { "󰎤 ", "󰼐 ", "󰼑 ", "󰼒 ", "󰼓 ", "󰼔 ", "󰼕 ", "󰼖 ", "󰼗 ", "󰼘 " };
 
 /* key definitions */
 #define MODKEY Mod1Mask
@@ -141,6 +141,7 @@ static const Key keys[] = {
 	TAGKEYS(                        XK_9,                      8)
 	{ MODKEY|ShiftMask,             XK_q,      quitprompt,     {0} },
 	{ Mod4Mask,			XK_l,		spawn,	   SHCMD("slock")},
+	{ Mod4Mask,			XK_space,	spawn,	   SHCMD("~/.dwm/imetoggle.sh") },
 };
 
 /* button definitions */
