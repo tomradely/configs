@@ -7,19 +7,16 @@ static const unsigned int gappx[]   = { 20 };   /* default gap between windows i
 static const unsigned int snap      = 32;       /* snap pixel */
 static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
+static const int vertpad            = 10;       /* vertical padding of bar */
+static const int sidepad            = 20;       /* horizontal padding of bar */
 #define ICONSIZE 32 /* icon size */
 #define ICONSPACING 10 /* space between icon and title */
 static const char *fonts[]          = { "MesloLGS NF:size=14", "Microsoft YaHei:size=12" };
 static const char dmenufont[]       = "MesloLGS NF:size=12";
-//static const char *brighter[]     = { "brightnessctl", "set", "5%+", NULL };
 static const char *brighter[]	    = {"/home/tom/.config/dunst/backlight.sh", "up", NULL };
-//static const char *dimmer[]	    = { "brightnessctl", "set", "5%-", NULL };
 static const char *dimmer[]	    = {"/home/tom/.config/dunst/backlight.sh", "down", NULL };
-//static const char *up_vol[]	    = { "pactl", "set-sink-volume", "@DEFAULT_SINK@", "+5%", NULL };
 static const char *up_vol[]	    = {"/home/tom/.config/dunst/volume.sh", "up", NULL};
-//static const char *down_vol[]	    = { "pactl", "set-sink-volume", "@DEFAULT_SINK@", "-5%", NULL };
 static const char *down_vol[]	    = {"/home/tom/.config/dunst/volume.sh", "down", NULL};
-//static const char *mute_vol[]	    = { "pactl", "set-sink-mute", "@DEFAULT_SINK@", "toggle", NULL };
 static const char *mute_vol[]	    = {"/home/tom/.config/dunst/volume.sh", "mute", NULL};
 static const char *next[]	    = {"playerctl", "next", NULL};
 static const char *prev[]	    = {"playerctl", "previous", NULL};
@@ -34,11 +31,21 @@ static const char col_cyan[]        = "#cb8819";
 static const char *colors[][3]      = {
 	/*               fg         bg         border   */
 	[SchemeNorm] = { col_gray3, col_gray1, col_cyan },
-	[SchemeSel]  = { col_gray4, col_cyan,  col_gray2  },
+	[SchemeSel]  = { col_gray3, col_gray1,  col_gray2  },
+	[SchemeStatus]  = { col_gray3, col_gray1,  "#000000"  }, // Statusbar right {text,background,not used but cannot be empty}
+	[SchemeTagsSel]  = { col_cyan, col_gray1,  "#000000"  }, // Tagbar left selected {text,background,not used but cannot be empty}
+	[SchemeTagsNorm]  = { col_gray3, col_gray1,  "#000000"  }, // Tagbar left unselected {text,background,not used but cannot be empty}
+	[SchemeInfoSel]  = { col_gray3, col_gray1,  "#000000"  }, // infobar middle  selected {text,background,not used but cannot be empty}
+	[SchemeInfoNorm]  = { col_gray3, col_gray1,  "#000000"  }, // infobar middle  unselected {text,background,not used but cannot be empty}
 };
 
 /* tagging */
 static const char *tags[] = { "甲", "乙", "丙", "丁", "戊", "己", "庚", "辛", "壬" };
+
+static const unsigned int ulinepad	= 5;	/* horizontal padding between the underline and tag */
+static const unsigned int ulinestroke	= 2;	/* thickness / height of the underline */
+static const unsigned int ulinevoffset	= 0;	/* how far above the bottom of the bar the line should appear */
+static const int ulineall 		= 0;	/* 1 to show underline on all tags, 0 for just the active ones */
 
 static const Rule rules[] = {
 	/* xprop(1):
@@ -58,15 +65,17 @@ static const int resizehints = 0;    /* 1 means respect size hints in tiled resi
 static const int lockfullscreen = 1; /* 1 will force focus on the fullscreen window */
 static const Layout layouts[] = {
 	/* symbol     arrange function */
-	{ " ",      tile },    /* first entry is default */
-	{ " ",      NULL },    /* no layout function means floating behavior */
-	{ " ",      monocle },
-	{ "畳 ",     tatami },
+	{ "",      tile },    /* first entry is default */
+	{ "",      NULL },    /* no layout function means floating behavior */
+	{ "",      monocle },
+	{ "畳",     tatami },
+	{ "|M|",    centeredmaster },
+	{ ">M>",    centeredfloatingmaster },
 };
 
 /* custom symbols for nr. of clients in monocle layout */
 /* when clients >= LENGTH(monocles), uses the last element */
-static const char *monocles[] = { "󰎤 ", "󰼐 ", "󰼑 ", "󰼒 ", "󰼓 ", "󰼔 ", "󰼕 ", "󰼖 ", "󰼗 ", "󰼘 " };
+static const char *monocles[] = { "󰎤", "󰼐", "󰼑", "󰼒", "󰼓", "󰼔", "󰼕", "󰼖", "󰼗", "󰼘" };
 
 /* key definitions */
 #define MODKEY Mod1Mask
@@ -97,6 +106,8 @@ static const Key keys[] = {
 	{ MODKEY,			XK_o,	shiftviewclients,  { .i = +1 } },
 	{ MODKEY|ShiftMask,		XK_o,	 shiftview,	   { .i = +1 } },
 	{ MODKEY|ShiftMask,		XK_i,	 shiftview,	   { .i = -1 } },
+	{ Mod4Mask|ControlMask,	    XK_Right,	 shiftview,	   { .i = +1 } },
+	{ Mod4Mask|ControlMask,     XK_Left,	 shiftview,	   { .i = -1 } },
 	{ MODKEY,			XK_i,	shiftviewclients,  { .i = -1 } },
 	{ MODKEY,                       XK_p,      spawn,          {.v = dmenucmd } },
 	{ MODKEY|ShiftMask,             XK_Return, spawn,          {.v = termcmd } },
@@ -117,7 +128,9 @@ static const Key keys[] = {
 	{ MODKEY,                       XK_t,      setlayout,      {.v = &layouts[0]} },
 	{ MODKEY,                       XK_f,      setlayout,      {.v = &layouts[1]} },
 	{ MODKEY,                       XK_m,      setlayout,      {.v = &layouts[2]} },
-	{ MODKEY,                      XK_y,      setlayout,      {.v = &layouts[3]} },
+	{ MODKEY,                       XK_y,      setlayout,      {.v = &layouts[3]} },
+	{ MODKEY,                       XK_z,      setlayout,      {.v = &layouts[4]} },
+	{ MODKEY,                       XK_x,      setlayout,      {.v = &layouts[5]} },
 	{ MODKEY,                       XK_space,  setlayout,      {0} },
 	{ MODKEY|ShiftMask,             XK_space,  togglefloating, {0} },
 	{ MODKEY,                       XK_0,      view,           {.ui = ~0 } },

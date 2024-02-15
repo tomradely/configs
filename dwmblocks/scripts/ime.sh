@@ -6,4 +6,4 @@ case "$(fcitx5-remote -n)" in
 	"pinyin") ime="拼" ;;
 esac
 icon="󰌌"
-printf " %s %s " "$icon" "$ime"
+printf "%s %s " "$icon" "$ime"

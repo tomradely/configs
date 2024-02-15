@@ -227,18 +227,6 @@ _G.packer_plugins = {
 }
 
 time([[Defining packer_plugins]], false)
--- Config for: neo-tree.nvim
-time([[Config for neo-tree.nvim]], true)
-require("setup/neo-tree")
-time([[Config for neo-tree.nvim]], false)
--- Config for: nvim-cmp
-time([[Config for nvim-cmp]], true)
-require("setup/cmp")
-time([[Config for nvim-cmp]], false)
--- Config for: nvim-web-devicons
-time([[Config for nvim-web-devicons]], true)
-require("setup/nvim-web-devicons")
-time([[Config for nvim-web-devicons]], false)
 -- Config for: telescope.nvim
 time([[Config for telescope.nvim]], true)
 require("setup/telescope")
@@ -255,6 +243,18 @@ time([[Config for alpha-nvim]], false)
 time([[Config for nvim-treesitter]], true)
 require("setup/nvim-treesitter")
 time([[Config for nvim-treesitter]], false)
+-- Config for: neo-tree.nvim
+time([[Config for neo-tree.nvim]], true)
+require("setup/neo-tree")
+time([[Config for neo-tree.nvim]], false)
+-- Config for: nvim-cmp
+time([[Config for nvim-cmp]], true)
+require("setup/cmp")
+time([[Config for nvim-cmp]], false)
+-- Config for: nvim-web-devicons
+time([[Config for nvim-web-devicons]], true)
+require("setup/nvim-web-devicons")
+time([[Config for nvim-web-devicons]], false)
 vim.cmd [[augroup packer_load_aucmds]]
 vim.cmd [[au!]]
   -- Event lazy-loads
