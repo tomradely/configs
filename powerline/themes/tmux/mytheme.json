@@ -1,0 +1,70 @@
+{
+	"segments": {
+		"right": [
+			{
+        			"function": "powerline.segments.common.players.cmus",
+        			"name": "player"
+			},
+			{
+				"function": "powerline.segments.common.sys.cpu_load_percent"
+			},
+			{
+				"function": "powerline.segments.common.bat.battery",
+				"args": {
+					"gamify": "true",
+					"full_heart": "♥",
+					"empty_heart": "♥"
+				}
+			},
+			{
+				"function": "powerline.segments.common.env.user"
+			},
+			{
+				"function": "powerline.segments.common.net.hostname",
+				"args" : {
+					"only_if_ssh": "true"
+				}
+			},
+			{
+				"function": "powerline.segments.common.wthr.weather",
+				"args": {
+					"unit": "C",
+					"location_query": "Exeter",
+					"icons": {
+						"tornado":                 "󰼸",
+						"hurricane":               "󰢘",
+						"showers":                 "",
+						"scattered_showers":       "󰕊",
+						"thunderstorms":           "",
+						"isolated_thunderstorms":  "",
+						"scattered_thunderstorms": "",
+						"dust":                    "",
+						"fog":                     "󰖑",
+						"cold":                    "",
+						"partly_cloudy_day":       "󰖕",
+						"mostly_cloudy_day":       "󰖐",
+						"sun":                     "󰖙",
+						"hot":                     "",
+						"day":                     "",
+						"blustery":                "",
+						"rainy":                   "󰖗",
+						"cloudy":                  "",
+						"snowy":                   "󰼶",
+						"stormy":                  "",
+						"foggy":                   "󰖑",
+						"sunny":                   "󰖙",
+						"night":                   "󰖔",
+						"windy":                   "󰖝",
+						"not_available":           "󰨹",
+						"unknown":                 "󰨹"
+					}
+				}
+			},
+			{
+				"function": "powerline.segments.common.time.date"
+			}
+		],
+		"left": [
+			]
+	}
+}

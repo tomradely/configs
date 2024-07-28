@@ -1,0 +1,263 @@
+bar:
+  height: 52
+  location: top
+  spacing: 10
+  margin: 7
+  background: 24283bcc
+  foreground: a9b1d6ff
+  border:
+    width: 4 
+    color: 7aa2f7cc
+      #    margin: 15
+      #    top-margin: 15
+
+  #default font
+  font: MesloLGS NF:pixelsize=32
+
+  left:
+    - dwl:
+        number-of-tags: 9
+        dwl-info-filename: "/home/tom/.dwl_info"
+        name-of-tags: [ 甲, 乙, 丙, 丁, 戊, 己, 庚, 辛, 壬 ]
+        content:
+          list:
+            items:
+              - map:
+                  conditions:
+                    # default tag
+                    id == 0:
+                      - string:
+                          foreground: 0db9d7ff
+                          text: " {layout} "
+                          font: MesloLGS NF:pixelsize=32
+                      - string:
+                          text: " {title}"
+                          foreground: acb0d0ff
+                          font: FiraSans:pixelsize=32
+                    selected:
+                      - string:
+                          deco:
+                            overline:
+                              size: 4
+                              color: 9ece6aff
+                          text: " {name} "
+                    ~empty: {string: {text: " {name} "}}
+                    urgent:
+                      - string:
+                          deco:
+                            overline:
+                              size: 4 
+                              color: ff9e64ff
+                          foreground: 9ece6aff
+                          text: " {name}󰍢"
+
+  right:
+    - removables:
+        content:
+          map:
+            conditions:
+              ~mounted:
+                - string:
+                    on-click: udisksctl mount -b {device}
+                    text: ""
+                    deco: {overline: {size: 4, color: ff9e64ff}}
+                - string:
+                    on-click: udisksctl mount -b {device}
+                    text: "  {label}"
+                    font: FiraSans:pixelsize=32
+                    deco: {overline: {size: 4, color: ff9e64ff}}
+              mounted:
+                - string:
+                    on-click: udisksctl unmount -b {device}
+                    text: ""
+                    deco: {overline: {size: 4, color: 9ece6aff}}
+                - string:
+                    on-click: udisksctl unmount -b {device}
+                    text: "  {label}"
+                    font: FiraSans:pixelsize=32
+                    deco: {overline: {size: 4, color: 9ece6aff}}
+
+#    - script:
+#        path: /home/tom/.config/.dwl/ime.sh
+#        args: []
+#        content: {string: {text: "{icon} {ime}"}}
+    - pipewire:
+       content:
+          list:
+            items:
+              - map:
+                  on-click: 
+                    left: /home/tom/.config/.dwl/volume.sh mute
+                    right: com.saivert.pwvucontrol
+                    wheel-up: /home/tom/.config/.dwl/volume.sh up 
+                    wheel-down: /home/tom/.config/.dwl/volume.sh down
+                  conditions:
+                    type == "sink":
+                      map:
+                        conditions:
+                          muted: {string: {text: " 󰝟 "}}
+                        default:
+                          - ramp:
+                              tag: cubic_volume
+                              items:
+                                - string: {text: "  "}
+                                - string: {text: "  "}
+                                - string: {text: "  "}
+    - network: 
+        content:
+          map:
+            default: {empty: {}}
+            conditions: 
+              name == wlp1s0: 
+                map:
+                  on-click:
+                    right: networkmanager_dmenu
+                  default:   
+                   - string:
+                      text: "󰤮"
+                  conditions:  
+                    state == down:
+                      - string:
+                          text: "󰤮"
+                    state == up:
+                      list:
+                        items:
+                          - ramp:
+                              tag: signal
+                              min: -125
+                              max: -25 
+                              items:
+                                - string:
+                                    text: "󰤯" 
+                                - string:
+                                    text: "󰤟"
+                                - string:
+                                    text: "󰤢"
+                                - string:
+                                    text: "󰤥" 
+                                - string:
+                                    text: "󰤨"
+#              name == tun0: # this has inexplicably stopped working
+#                map:
+#                  on-click:
+#                    left: nmcli con down Chisinau
+#                  default: {empty: {}}
+#                  conditions:
+#                    state == down: {empty: {}}
+#                    state == up:
+#                      - string:
+#                          foreground: 9ece6aff
+#                          text: " "
+    - script:
+        path: /usr/bin/yambar-bluetooth
+        content:
+          - map:
+              on-click:
+                right: blueman-manager
+              conditions:
+                ~powered:
+                  - string:
+                      on-click:
+                        left: bluetoothctl power on
+                      text: "󰂲"
+                powered && connected:
+                  - string:
+                      on-click:
+                        left: bluetoothctl power off
+                      text: "󰂱"
+                      deco: {overline: {size: 4, color: 9ece6aff}}
+                  - string:
+                      on-click: 
+                        left: bluetoothctl power off
+                      text: "  {name}"
+                      font: FiraSans:pixelsize=32
+                      deco: {overline: {size: 4, color: 9ece6aff}}
+                powered && discovering:
+                  - string:
+                      text: "󰂰"
+                      deco: {overline: {size: 4, color: ff9e64ff}}
+                ~connected:
+                  - string:
+                      on-click: 
+                        left: bluetoothctl power off
+                      text: "󰂯"
+                      deco: {overline: {size: 4, color: ff9e64ff}}
+    - label:
+        content: {string: {text: ""}}
+    - battery:
+        name: BAT0
+        poll-interval: 30000
+        anchors:
+          discharging: &discharging
+            list:
+              items:
+                - ramp:
+                    tag: capacity
+                    items:
+                      - string:
+                          foreground: ff7a93ff
+                          text: ""
+                          font: MesloLGS NF:pixelsize=48
+                      - string:
+                          foreground: ff7a93ff
+                          text: ""
+                          font: MesloLGS NF:pixelsize=48
+                      - string:
+                          foreground: ff9e64ff
+                          text: ""
+                          font: MesloLGS NF:pixelsize=48
+                      - string: {text: "", font: MesloLGS NF:pixelsize=48}
+                      - string: {text: "", font: MesloLGS NF:pixelsize=48}
+                      - string: {text: "", font: MesloLGS NF:pixelsize=48}
+                      - string: {text: "", font: MesloLGS NF:pixelsize=48}
+                      - string: {text: "", font: MesloLGS NF:pixelsize=48}
+                      - string: {text: "", font: MesloLGS NF:pixelsize=48}
+                      - string: {text: "", font: MesloLGS NF:pixelsize=48}
+                - string: {text: "  {capacity}%", font: FiraSans:pixelsize=32}
+        content:
+          map:
+            on-click: 
+                    wheel-up: /home/tom/.config/.dwl/backlight.sh up 
+                    wheel-down: /home/tom/.config/.dwl/backlight.sh down
+            conditions:
+              state == unknown:
+                <<: *discharging
+              state == discharging:
+                <<: *discharging
+              state == charging:
+                - string:
+                    foreground: 9ece6aff
+                    text: "󰂄 "
+                    font: MesloLGS NF:pixelsize=28
+                - string: {text: " {capacity}%", font: FiraSans:pixelsize=32}
+              state == full:
+                - string:
+                    foreground: 9ece6aff
+                    text: ""
+                    font: MesloLGS NF:pixelsize=32
+              state == "not charging":
+                - string: {text: "", font: MesloLGS NF:pixelsize=32}
+    - script:
+        path: /usr/local/bin/matcha
+        args: ['-d', '--bar=yambar', '--off']
+        content:
+            - map:
+                on-click:
+                  left: matcha --toggle
+                conditions:
+                  inhibit: 
+                    - string:
+                        foreground: 9ece6aff
+                        text: "🍵"
+                  ~inhibit: { string: { text: "💤"} }
+    - script:
+        path: /home/tom/.config/.dwl/date.sh
+        args: []
+        content:
+          - string:
+              text: " {dateicon} {ldate} {day}"
+#              on-click: dunstify "󰃭 $(date "+%d %B %Y")"
+    - clock:
+        time-format: "%H:%M"
+        content:
+          - string: {text: "󱑇 {time} "}

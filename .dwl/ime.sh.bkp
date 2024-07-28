@@ -1,0 +1,19 @@
+#!/bin/sh
+INTERVAL=30
+printf -- '%s\n' "icon|string|"
+printf -- '%s\n' "ime|string|"
+printf -- '%s\n' ""
+
+while true; do
+	icon="󰌌"
+	case "$(fcitx5-remote -n)" in
+		"keyboard-us") ime="us" ;;
+		"keyboard-gb") ime="gb" ;;
+		"keyboard-ru-phonetic_YAZHERTY") ime="ру" ;;
+		"pinyin") ime="拼" ;;
+	esac
+	printf -- '%s\n' "icon|string|${icon}"
+	printf -- '%s\n' "ime|string|${ime}"
+	printf -- '%s\n' ""
+	sleep $INTERVAL
+done
