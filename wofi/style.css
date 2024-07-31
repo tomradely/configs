@@ -1,0 +1,35 @@
+* {
+	border: none;
+}
+
+#window {
+	font-size: 16px;
+	font-family: "Sans";
+	background-color: rgba(31, 35, 53, 0.7);
+	color: #c0caf5;
+	border-radius: 5px;
+	border-bottom: 2px solid #c3e88d;
+}
+
+#input{
+	background-color: rgba(122, 162, 247, 0.8);
+	color: #b4f9f8;
+	padding: 0.25em;
+}
+
+#entry{
+	padding: 0.25em;
+}
+
+#entry:selected {
+	background-color: rgba(180, 249, 248, 0.8);
+}
+
+#text:selected {
+	color: #1f2335;
+}
+
+image{
+	margin-left: 0.25em;
+	margin-right: 0.25em;
+}
