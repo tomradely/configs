@@ -22,6 +22,13 @@ require("lazy").setup({
 })
 -- mappings 
 vim.keymap.set('n', 'K', vim.lsp.buf.hover, {})
+vim.g.UltiSnipsExpandTrigger='<tab>'
+vim.g.UltiSnipsJumpForwardTrigger='<c-j>'
+vim.g.UltiSnipsJumpBackwardTrigger='<c-k>'
+
 
 -- set colour scheme
 vim.cmd 'colorscheme tokyonight-storm'
+
+-- vimtex
+vim.opt.encoding="utf-8"

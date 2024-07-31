@@ -6,7 +6,7 @@ return {
 		{'hrsh7th/cmp-buffer'},
 		{'hrsh7th/cmp-cmdline'},
 		{'hrsh7th/cmp-path'},
-		{'L3MON4D3/LuaSnip'},
+--		{'L3MON4D3/LuaSnip'},
 	},
 	config = function ()
 	-- Set up nvim-cmp.
@@ -36,8 +36,8 @@ return {
 	    sources = cmp.config.sources({
 	      { name = 'nvim_lsp' },
 	      -- { name = 'vsnip' }, -- For vsnip users.
-	      { name = 'luasnip' }, -- For luasnip users.
-	      -- { name = 'ultisnips' }, -- For ultisnips users.
+	      -- { name = 'luasnip' }, -- For luasnip users.
+	      { name = 'ultisnips' }, -- For ultisnips users.
 	      -- { name = 'snippy' }, -- For snippy users.
 	    }, {
 	      { name = 'buffer' },
@@ -113,6 +113,15 @@ return {
 		  capabilities = capabilities
 	  }
 	  require('lspconfig').marksman.setup {
+		  capabilities = capabilities
+	  }
+	  require('lspconfig').texlab.setup {
+		  capabilities = capabilities
+	  }
+	  require('lspconfig').ltex.setup {
+		  capabilities = capabilities
+	  }
+	  require('lspconfig').typos_lsp.setup {
 		  capabilities = capabilities
 	  }
 	end,
