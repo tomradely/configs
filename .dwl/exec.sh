@@ -11,7 +11,5 @@ export GTK_USE_PORTAL=1
 export GTK_IM_MODULE=fcitx 
 export QT_IM_MODULE=fcitx
 export MOZ_ENABLE_WAYLAND=1
-# export MOZ_ACCELERATED=1
-# things seem to be working fine without the above
 dbus-update-activation-environment --systemd --all
 dwl
