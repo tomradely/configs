@@ -6,7 +6,7 @@ bar:
   background: 24283bcc
   foreground: a9b1d6ff
   border:
-    width: 4 
+    width: 0 
     color: 7aa2f7cc
       #    margin: 15
       #    top-margin: 15
@@ -110,33 +110,32 @@ bar:
             conditions: 
               name == wlp1s0: 
                 map:
-                  on-click:
-                    right: networkmanager_dmenu
+                  on-click: networkmanager_dmenu
                   default:   
                    - string:
-                      text: "󰤮"
+                      text: "󰤥"
                   conditions:  
                     state == down:
                       - string:
                           text: "󰤮"
                     state == up:
-                      list:
-                        items:
-                          - ramp:
-                              tag: signal
-                              min: -125
-                              max: -25 
-                              items:
-                                - string:
-                                    text: "󰤯" 
-                                - string:
-                                    text: "󰤟"
-                                - string:
-                                    text: "󰤢"
-                                - string:
-                                    text: "󰤥" 
-                                - string:
-                                    text: "󰤨"
+                      - list:
+                          items:
+                            - ramp:
+                                tag: signal
+                                min: -125
+                                max: -25 
+                                items:
+                                  - string:
+                                      text: "󰤯" 
+                                  - string:
+                                      text: "󰤟"
+                                  - string:
+                                      text: "󰤢"
+                                  - string:
+                                      text: "󰤥" 
+                                  - string:
+                                      text: "󰤨"
 #              name == tun0: # this has inexplicably stopped working
 #                map:
 #                  on-click:

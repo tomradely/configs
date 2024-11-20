@@ -29,7 +29,7 @@
 				"function": "powerline.segments.common.wthr.weather",
 				"args": {
 					"unit": "C",
-					"location_query": "Exeter",
+					"location_query": "Shijiazhuang",
 					"icons": {
 						"tornado":                 "󰼸",
 						"hurricane":               "󰢘",
