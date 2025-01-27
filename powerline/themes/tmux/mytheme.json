@@ -29,7 +29,7 @@
 				"function": "powerline.segments.common.wthr.weather",
 				"args": {
 					"unit": "C",
-					"location_query": "Shijiazhuang",
+					"location_query": "Mercer",
 					"icons": {
 						"tornado":                 "󰼸",
 						"hurricane":               "󰢘",
@@ -61,7 +61,12 @@
 				}
 			},
 			{
-				"function": "powerline.segments.common.time.date"
+				"function": "powerline.segments.common.time.date",
+				"name": "time",
+				"args": {
+					"format": "%H:%M %Y-%m-%d",
+					"istime": true
+				}
 			}
 		],
 		"left": [

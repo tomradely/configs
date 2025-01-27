@@ -88,7 +88,7 @@ bar:
               - map:
                   on-click: 
                     left: /home/tom/.config/.dwl/volume.sh mute
-                    right: com.saivert.pwvucontrol
+                    right: flatpak run --branch=stable --arch=x86_64 --command=pwvucontrol com.saivert.pwvucontrol
                     wheel-up: /home/tom/.config/.dwl/volume.sh up 
                     wheel-down: /home/tom/.config/.dwl/volume.sh down
                   conditions:

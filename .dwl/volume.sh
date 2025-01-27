@@ -29,12 +29,12 @@ case $1 in
     up)
 	# Set the volume on (if it was muted)
 	amixer -D pulse set Master on > /dev/null
-	amixer -D pulse sset Master 2%+ > /dev/null
+	amixer -D pulse sset Master 2%+,2%+ > /dev/null
 	send_notification
 	;;
     down)
 	amixer -D pulse set Master on > /dev/null
-	amixer -D pulse sset Master 2%- > /dev/null
+	amixer -D pulse sset Master 2%-,2%- > /dev/null
 	send_notification1
 	;;
     mute)
