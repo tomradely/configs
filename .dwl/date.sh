@@ -7,7 +7,7 @@ printf -- '%s\n' "day|string|"
 printf -- '%s\n' ""
 
 while true; do
-	ldate=$(lunarcal --view=d | grep 甲辰 | awk '{print$2$3}') #This must be set once a year.
+	ldate=$(lunarcal --view=d | grep 乙巳 | awk '{print$2$3}') #This must be set once a year.
 	dateicon='󰃭'
 	case $(date '+%u') in
 		"1") day="月" ;;
