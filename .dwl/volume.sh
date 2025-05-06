@@ -13,18 +13,30 @@ function get_volume {
 function is_mute {
     amixer get Master | grep '%' | grep -oE '[^ ]+$' | grep off > /dev/null
 }
-
 function send_notification {
     volume=`get_volume`
     bar=$(seq -s "─" $(($volume / 2)) | sed 's/[0-9]//g')
-    dunstify -i ~/.local/share/icons/GNUstep/status/48/audio-volume-medium.png -t 8000 -r 2593 -u normal -h int:value:"$volume" "Volume: ${volume}%"
+    dunstify -t 8000 -r 2593 -u normal -h int:value:"$volume" "Volume: ${volume}%"
 }
+
+# Notifications with images are currently throwing errors, presumably due to an issue with Dunst
+#function send_notification {
+#    volume=`get_volume`
+#    bar=$(seq -s "─" $(($volume / 2)) | sed 's/[0-9]//g')
+#    dunstify -i ~/.local/share/icons/GNUstep/status/48/audio-volume-medium.png -t 8000 -r 2593 -u normal -h int:value:"$volume" "Volume: ${volume}%"
+#}
 
 function send_notification1 {
     volume=`get_volume`
     bar=$(seq -s "─" $(($volume / 2)) | sed 's/[0-9]//g')
-    dunstify -i ~/.local/share/icons/GNUstep/status/48/audio-volume-low.png -t 8000 -r 2593 -u normal -h int:value:"$volume" "Volume: ${volume}%"
+    dunstify -t 8000 -r 2593 -u normal -h int:value:"$volume" "Volume: ${volume}%"
 }
+
+#function send_notification1 {
+#    volume=`get_volume`
+#    bar=$(seq -s "─" $(($volume / 2)) | sed 's/[0-9]//g')
+#    dunstify -i ~/.local/share/icons/GNUstep/status/48/audio-volume-low.png -t 8000 -r 2593 -u normal -h int:value:"$volume" "Volume: ${volume}%"
+#}
 case $1 in
     up)
 	# Set the volume on (if it was muted)
@@ -41,10 +53,16 @@ case $1 in
     	# Toggle mute
 	amixer -D pulse set Master 1+ toggle > /dev/null
 	if is_mute ; then
-        dunstify -i ~/.local/share/icons/GNUstep/status/48/audio-volume-muted.png -t 8000 -r 2593 -u normal "Volume: Mute"
+       dunstify -t 8000 -r 2593 -u normal "Volume: Mute"
     else
-        send_notification
+       send_notification
 	fi
+
+#	if is_mute ; then
+#       dunstify -i ~/.local/share/icons/GNUstep/status/48/audio-volume-muted.png -t 8000 -r 2593 -u normal "Volume: Mute"
+#    else
+#       send_notification
+#	fi
 	;;
 esac
 
