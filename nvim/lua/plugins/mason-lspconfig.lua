@@ -1,6 +1,9 @@
 return {
-	'williamboman/mason-lspconfig.nvim',
+	"williamboman/mason-lspconfig.nvim", version = "^1.0.0",
 	opts = {
-		auto_install = true,
+	},
+	dependencies = {
+		{ "mason-org/mason.nvim", opts = {} },
+		"neovim/nvim-lspconfig",
 	},
 }

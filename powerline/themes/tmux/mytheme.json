@@ -29,7 +29,7 @@
 				"function": "powerline.segments.common.wthr.weather",
 				"args": {
 					"unit": "C",
-					"location_query": "Mercer",
+					"location_query": "Minhang",
 					"icons": {
 						"tornado":                 "󰼸",
 						"hurricane":               "󰢘",

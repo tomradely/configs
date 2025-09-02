@@ -28,7 +28,7 @@ vim.g.UltiSnipsJumpBackwardTrigger='<c-k>'
 
 
 -- set colour scheme
-vim.cmd 'colorscheme tokyonight-storm'
+vim.cmd 'colorscheme everforest'
 
 -- vimtex
 vim.opt.encoding="utf-8"

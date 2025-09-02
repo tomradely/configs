@@ -3,13 +3,15 @@ bar:
   location: top
   spacing: 10
   margin: 7
-  background: 24283bcc
-  foreground: a9b1d6ff
+  background: 272e33cc
+  foreground: d3c6aaff
   border:
     width: 0 
     color: 7aa2f7cc
-      #    margin: 15
-      #    top-margin: 15
+    left-margin: 40
+    right-margin: 40
+    margin: 0
+    top-margin: 10
 
   #default font
   font: MesloLGS NF:pixelsize=32
@@ -27,19 +29,19 @@ bar:
                     # default tag
                     id == 0:
                       - string:
-                          foreground: 0db9d7ff
+                          foreground: 83c092ff
                           text: " {layout} "
                           font: MesloLGS NF:pixelsize=32
                       - string:
                           text: " {title}"
-                          foreground: acb0d0ff
+                          foreground: d3c6aaff
                           font: FiraSans:pixelsize=32
                     selected:
                       - string:
                           deco:
                             overline:
                               size: 4
-                              color: 9ece6aff
+                              color: 47b313ff
                           text: " {name} "
                     ~empty: {string: {text: " {name} "}}
                     urgent:
@@ -47,8 +49,8 @@ bar:
                           deco:
                             overline:
                               size: 4 
-                              color: ff9e64ff
-                          foreground: 9ece6aff
+                              color: dbbc7fff
+                          foreground: a7c080ff
                           text: " {name}󰍢"
 
   right:
@@ -60,22 +62,22 @@ bar:
                 - string:
                     on-click: udisksctl mount -b {device}
                     text: ""
-                    deco: {overline: {size: 4, color: ff9e64ff}}
+                    deco: {overline: {size: 4, color: dbbc7fff}}
                 - string:
                     on-click: udisksctl mount -b {device}
                     text: "  {label}"
                     font: FiraSans:pixelsize=32
-                    deco: {overline: {size: 4, color: ff9e64ff}}
+                    deco: {overline: {size: 4, color: dbbc7fff}}
               mounted:
                 - string:
                     on-click: udisksctl unmount -b {device}
                     text: ""
-                    deco: {overline: {size: 4, color: 9ece6aff}}
+                    deco: {overline: {size: 4, color: a7c080ff}}
                 - string:
                     on-click: udisksctl unmount -b {device}
                     text: "  {label}"
                     font: FiraSans:pixelsize=32
-                    deco: {overline: {size: 4, color: 9ece6aff}}
+                    deco: {overline: {size: 4, color: a7c080ff}}
 
 #    - script:
 #        path: /home/tom/.config/.dwl/ime.sh
@@ -108,9 +110,10 @@ bar:
           map:
             default: {empty: {}}
             conditions: 
-              name == wlp1s0: 
+              name == wlp192s0: 
                 map:
-                  on-click: networkmanager_dmenu
+                  on-click:
+                    right: networkmanager_dmenu
                   default:   
                    - string:
                       text: "󰤥"
@@ -164,27 +167,27 @@ bar:
                       on-click:
                         left: bluetoothctl power off
                       text: "󰂱"
-                      deco: {overline: {size: 4, color: 9ece6aff}}
+                      deco: {overline: {size: 4, color: a7c080ff}}
                   - string:
                       on-click: 
                         left: bluetoothctl power off
                       text: "  {name}"
                       font: FiraSans:pixelsize=32
-                      deco: {overline: {size: 4, color: 9ece6aff}}
+                      deco: {overline: {size: 4, color: a7c080ff}}
                 powered && discovering:
                   - string:
                       text: "󰂰"
-                      deco: {overline: {size: 4, color: ff9e64ff}}
+                      deco: {overline: {size: 4, color: dbbc7fff}}
                 ~connected:
                   - string:
                       on-click: 
                         left: bluetoothctl power off
                       text: "󰂯"
-                      deco: {overline: {size: 4, color: ff9e64ff}}
+                      deco: {overline: {size: 4, color: dbbc7fff}}
     - label:
         content: {string: {text: ""}}
     - battery:
-        name: BAT0
+        name: BAT1
         poll-interval: 30000
         anchors:
           discharging: &discharging
@@ -194,15 +197,15 @@ bar:
                     tag: capacity
                     items:
                       - string:
-                          foreground: ff7a93ff
+                          foreground: dbbc7fff
                           text: ""
                           font: MesloLGS NF:pixelsize=48
                       - string:
-                          foreground: ff7a93ff
+                          foreground: e67e80ff
                           text: ""
                           font: MesloLGS NF:pixelsize=48
                       - string:
-                          foreground: ff9e64ff
+                          foreground: dbbc7fff
                           text: ""
                           font: MesloLGS NF:pixelsize=48
                       - string: {text: "", font: MesloLGS NF:pixelsize=48}
@@ -225,13 +228,13 @@ bar:
                 <<: *discharging
               state == charging:
                 - string:
-                    foreground: 9ece6aff
+                    foreground: a7c080ff
                     text: "󰂄 "
                     font: MesloLGS NF:pixelsize=28
                 - string: {text: " {capacity}%", font: FiraSans:pixelsize=32}
               state == full:
                 - string:
-                    foreground: 9ece6aff
+                    foreground: a7c080ff
                     text: ""
                     font: MesloLGS NF:pixelsize=32
               state == "not charging":
@@ -246,7 +249,7 @@ bar:
                 conditions:
                   inhibit: 
                     - string:
-                        foreground: 9ece6aff
+                        foreground: a7c080ff
                         text: "🍵"
                   ~inhibit: { string: { text: "💤"} }
     - script:

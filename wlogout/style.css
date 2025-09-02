@@ -5,16 +5,16 @@
 }
 
 window {
-	background-color: rgba(31, 35, 53, 0.7);
+	background-color: rgba(39, 46, 51, 0.3);
 }
 
 button {
     border-radius: 0;
-    border-color: #7aa2f7;
-	text-decoration-color: #449dab;
-    color: #9699a8;
+    border-color: #7fbbb3;
+	text-decoration-color: #a7c080;
+    color: #d3c6aa;
     	font-size: 20px;
-	background-color: rgba(31,35, 53, 0.7);
+	background-color: rgba(39, 46, 51, 0.7);
 	border-style: solid;
 	border-width: 2px;
 	background-repeat: no-repeat;
@@ -23,8 +23,8 @@ button {
 }
 
 button:focus, button:active, button:hover {
-	color: #32344a;
-	background-color: rgba(122, 162, 247, 0.8);
+	color: #272e33;
+	background-color: rgba(127, 187, 179, 0.8);
 	outline-style: none;
 }
 
