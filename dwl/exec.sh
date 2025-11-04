@@ -1,4 +1,5 @@
 #!/bin/bash
+export XDG_CONFIG_HOME="/home/tom/.config"
 export XDG_DATA_DIRS="/usr/local/share:/usr/share:/var/lib/flatpak/exports/share:/home/tom/.local/share/flatpak/exports/share:$XDG_DATA_DIRS"
 export PATH="$HOME/bin:$HOME/.local/bin:/usr/games:$PATH"
 export PATH="$HOME/adb-fastboot/platform-tools:$PATH"
@@ -11,5 +12,5 @@ export GTK_USE_PORTAL=1
 export GTK_IM_MODULE=fcitx 
 export QT_IM_MODULE=fcitx
 export MOZ_ENABLE_WAYLAND=1
-dbus-update-activation-environment --systemd --all
+export XDG_CURRENT_DESKTOP=sway
 dwl
