@@ -1,5 +1,6 @@
 return {
 	'xiyaowong/transparent.nvim',
+	lazy = false,
 	config = function ()
 require("transparent").setup({ -- Optional, you don't have to run setup.
   groups = { -- table: default groups
@@ -15,5 +16,6 @@ require("transparent").setup({ -- Optional, you don't have to run setup.
   'NeoTreeNormalNC'}, -- table: additional groups that should be cleared
   exclude_groups = {}, -- table: groups you don't want to clear
 })
+require('transparent').clear_prefix('NeoTree')
 end
 }

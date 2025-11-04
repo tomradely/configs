@@ -32,3 +32,6 @@ vim.cmd 'colorscheme everforest'
 
 -- vimtex
 vim.opt.encoding="utf-8"
+
+-- autosession
+vim.o.sessionoptions="blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions"

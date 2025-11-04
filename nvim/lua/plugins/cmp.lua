@@ -6,7 +6,7 @@ return {
 		{'hrsh7th/cmp-buffer'},
 		{'hrsh7th/cmp-cmdline'},
 		{'hrsh7th/cmp-path'},
---		{'L3MON4D3/LuaSnip'},
+		{'L3MON4D3/LuaSnip'},
 	},
 	config = function ()
 	-- Set up nvim-cmp.
@@ -45,13 +45,13 @@ return {
 	  })
 
 	  -- Set configuration for specific filetype.
-	  cmp.setup.filetype('gitcommit', {
-	    sources = cmp.config.sources({
-	      { name = 'git' }, -- You can specify the `git` source if [you were installed it](https://github.com/petertriho/cmp-git).
-	    }, {
-	      { name = 'buffer' },
-	    })
-	  })
+--	  cmp.setup.filetype('gitcommit', {
+--	    sources = cmp.config.sources({
+--	      { name = 'git' }, -- You can specify the `git` source if [you were installed it](https://github.com/petertriho/cmp-git).
+--	    }, {
+--	      { name = 'buffer' },
+--	    })
+--	  })
 
 	  -- Use buffer source for `/` and `?` (if you enabled `native_menu`, this won't work anymore).
 	  cmp.setup.cmdline({ '/', '?' }, {
@@ -68,7 +68,8 @@ return {
 	      { name = 'path' }
 	    }, {
 	      { name = 'cmdline' }
-	    })
+	    }),
+	    matching = { disallow_symbol_nonprefix_matching = false }
 	  })
 
 	  -- Set up lspconfig.
@@ -76,53 +77,5 @@ return {
 	  -- Replace <YOUR_LSP_SERVER> with each lsp server you've enabled.
 	  require("mason").setup()
 	  require("mason-lspconfig").setup()
-	  require('lspconfig').lua_ls.setup {
-	    capabilities = capabilities
-	  }
-	  require('lspconfig').jsonls.setup {
-		  capabilities = capabilities
-	  }
-	  require('lspconfig').pylsp.setup {
-		  capabilities = capabilities
-	  }
-	  require('lspconfig').yamlls.setup {
-		  capabilities = capabilities
-	  }
-	  require('lspconfig').ansiblels.setup {
-		  capabilities = capabilities
-	  }
-	  require('lspconfig').bashls.setup {
-		  capabilities = capabilities
-	  }
-	    require('lspconfig').clangd.setup {
-		  capabilities = capabilities
-	  }
-	  require('lspconfig').cmake.setup {
-		  capabilities = capabilities
-	  }
-	  require('lspconfig').pyright.setup {
-		  capabilities = capabilities
-	  }
-	  require('lspconfig').golangci_lint_ls.setup {
-		  capabilities = capabilities
-	  }
-	  require('lspconfig').sqls.setup {
-		  capabilities = capabilities
-	  }
-	  require('lspconfig').ts_ls.setup {
-		  capabilities = capabilities
-	  }
-	  require('lspconfig').marksman.setup {
-		  capabilities = capabilities
-	  }
-	  require('lspconfig').texlab.setup {
-		  capabilities = capabilities
-	  }
-	  require('lspconfig').ltex.setup {
-		  capabilities = capabilities
-	  }
-	  require('lspconfig').typos_lsp.setup {
-		  capabilities = capabilities
-	  }
 	end,
 }
