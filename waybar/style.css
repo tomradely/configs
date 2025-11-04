@@ -18,19 +18,6 @@ window#waybar {
 	border-radius: 8px;
 }
 
-.modules-center {
-	margin-top: 6px;
-	background-color: rgba(39, 46, 51, 0.6);
-	border-radius: 8px
-}
-
-.modules-right {
-	margin-top: 6px;
-	margin-right: 8px;
-	background-color: rgba(39, 46, 51, 0.8);
-	border-radius: 8px;
-}
-
 button {
     /* Use box-shadow instead of border so the text isn't offset */
     background: transparent;
@@ -44,6 +31,52 @@ button:hover {
     box-shadow: inset 0 -3px #83c092;
     background-color: rgba(39, 46, 51, 0.9);
     border-radius: 8px
+}
+
+#tags button {
+	color: #5c6a72;
+	padding: 4px 8px;
+}
+
+#tags button.occupied {
+	color: #d3c6aa;
+}
+
+#tags button.focused {
+	color: #83c092;
+    	box-shadow: inset 0 -3px #d3c6aa;
+    	background-color: rgba(39, 46, 51, 0.9);
+	border-radius: 8px;
+}
+
+#tags button.focused:hover {
+    color: #83c092;
+    box-shadow: inset 0 -3px #83c092;
+    background-color: rgba(39, 46, 51, 0.9);
+    border-radius: 8px
+}
+
+#tags button.urgent {
+	color: #a7c080;
+    	box-shadow: inset 0 -3px #a7c080;
+}
+
+.modules-center {
+	margin-top: 6px;
+	background-color: rgba(39, 46, 51, 0.6);
+	border-radius: 8px
+}
+
+#window {
+	color: #d3c6aa;
+	padding: 4px 8px
+}
+
+.modules-right {
+	margin-top: 6px;
+	margin-right: 8px;
+	background-color: rgba(39, 46, 51, 0.8);
+	border-radius: 8px;
 }
 
 #battery,
@@ -66,13 +99,9 @@ button:hover {
     border-radius: 8px
 }
 
-#window {
-	color: #d3c6aa;
-	padding: 4px 8px
-}
-
 #battery.charging, #battery.plugged {
     color: #d3c6aa;
+    border-radius: 8px;
 }
 
 @keyframes blink {
@@ -85,6 +114,7 @@ button:hover {
 /* Using steps() instead of linear as a timing function to limit cpu usage */
 #battery.critical:not(.charging) {
     background-color: #f53c3c;
+    border-radius: 8px;
     color: #ffffff;
     animation-name: blink;
     animation-duration: 0.5s;
@@ -120,27 +150,7 @@ button:hover {
     -gtk-icon-effect: highlight;
     background-color: #eb4d4b;
 }
+
 #idle_inhibitor.activated {
     color: #a7c080;
-}
-
-#tags button {
-	color: #5c6a72;
-	padding: 4px 8px
-}
-
-#tags button.occupied {
-	color: #d3c6aa;
-}
-
-#tags button.focused {
-	color: #83c092;
-    	box-shadow: inset 0 -3px #d3c6aa;
-    	background-color: rgba(39, 46, 51, 0.9);
-	border-radius: 8px;
-}
-
-#tags button.urgent {
-	color: #a7c080;
-    	border-bottom: 3px solid #a7c080;
 }
