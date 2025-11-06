@@ -1,0 +1,112 @@
+// -*- mode: jsonc -*-
+{
+    // "layer": "top", // Waybar at top layer
+    // "position": "bottom", // Waybar position (top|bottom|left|right)
+    "height": 38, // Waybar height (to be removed for auto height)
+    // "width": 1280, // Waybar width
+    "spacing": 4, // Gaps between modules (4px)
+    // Choose the order of the modules
+    "modules-left": [
+	"sway/workspaces"
+    ],
+    "modules-center": [
+	"sway/window"
+    ],
+    "modules-right": [
+        "tray",
+        "pulseaudio",
+        "network",
+        "battery",
+        "backlight",
+	"idle_inhibitor",
+        "clock"
+    ],
+    "sway/window": {
+        "format": "{title}",
+	"icon": true,
+	"tooltip": false,
+        "max-length": 300,
+        },
+    "tray": {
+        "icon-size": 24,
+        "spacing": 6
+    },
+    "clock": {
+        // "timezone": "America/New_York",
+	"tooltip-format": "\n<span size='9pt' font='WenQuanYi Zen Hei Mono'>{calendar}</span>",
+        "calendar": {
+                    "mode"          : "month",
+                    "mode-mon-col"  : 3,
+                    "weeks-pos"     : "right",
+                    "format": {
+                              "months":     "<span color='#d3c6aa'><b>{}</b></span>",
+                              "days":       "<span color='#ffffff'><b>{}</b></span>",
+                              "weeks":      "<span color='#5c6a72'><b>W{}</b></span>",
+                              "weekdays":   "<span color='#a7c080'><b>{}</b></span>",
+                              "today":      "<span color='#83c092'><b><u>{}</u></b></span>"
+                              }
+                    },
+        "actions":  {
+                    "on-click-right": "mode"
+                    },
+        "format": "{:%H:%M}  󰥔",
+        "format-alt": "{:L%A, %d %B %Y}  󰃭"
+    },
+    "idle_inhibitor": {
+        "format": "{icon}",
+	"tooltip": false,
+        "format-icons": {
+            "activated": "🍵",
+            "deactivated": "💤"
+        }
+    },
+
+    "backlight": {
+        // "device": "acpi_video1",
+        "format": "{icon}",
+	"tooltip": false,
+        "format-icons": ["", "", "", "", "", "", "", "", ""]
+    },
+    "battery": {
+        "states": {
+            // "good": 95,
+            "warning": 25,
+            "critical": 10
+        },
+        "format": "{capacity}% {icon}",
+        "format-full": "{icon}",
+        "format-charging": "{capacity}% 󱐋",
+        "format-plugged": "",
+        "format-alt": "{time} {icon}",
+        // "format-good": "", // An empty format will hide the module
+        "format-icons": ["", "", "", "", ""]
+    },
+    "network": {
+        // "interface": "wlp2*", // (Optional) To force the use of this interface
+        "format-wifi": "{essid}  ",
+        "format-ethernet": "{ipaddr}/{cidr}  󰈀",
+        "tooltip-format": "{ifname} via {gwaddr}  󰈀",
+        "format-linked": "{ifname} (No IP)  󰈀",
+        "format-disconnected": "󰤮",
+        "format-alt": "{ifname}: {ipaddr}/{cidr}"
+    },
+    "pulseaudio": {
+        // "scroll-step": 1, // %, can be a float
+       "format": "{icon}",
+        "format-bluetooth": "{icon} {format_source}",
+        "format-bluetooth-muted": "󰝟 {icon} {format_source}",
+        "format-muted": "󰝟 {format_source}",
+        "format-source": "",
+        "format-source-muted": "",
+        "format-icons": {
+            "headphone": "",
+            "hands-free": "",
+            "headset": "",
+            "phone": "",
+            "portable": "",
+            "car": "",
+            "default": ["", "", ""]
+        },
+        "on-click": "flatpak run --branch=stable --arch=x86_64 --command=pwvucontrol com.saivert.pwvucontrol"
+    }
+}
