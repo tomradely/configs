@@ -12,7 +12,7 @@
 }
 {
     "label" : "logout",
-    "action" : "killall dwl",
+    "action" : "loginctl terminate-user $USER",
     "text" : "Logout",
     "keybind" : "e"
 }

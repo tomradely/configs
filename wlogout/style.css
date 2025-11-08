@@ -29,25 +29,25 @@ button:focus, button:active, button:hover {
 }
 
 #lock {
-    background-image: image(url("/home/tom/.local/share/icons/GNUstep/apps/48/preferences-desktop-cryptography.png"), url("/home/tom/.local/share/icons/GNUstep/apps/48/preferences-desktop-cryptography.png"));
+    background-image: image(url("/home/tom/.icons/Papirus-Dark/128x128/apps/xfsm-lock.svg"), url("/home/tom/.icons/Papirus-Dark/128x128/apps/xfsm-lock.svg"));
 }
 
 #logout {
-    background-image: image(url("/home/tom/.local/share/icons/GNUstep/apps/48/preferences-system-login.png"), url("/home/tom/.local/share/icons/GNUstep/apps/48/preferences-system-login.png"));
+    background-image: image(url("/home/tom/.icons/Papirus-Dark/128x128/apps/xfsm-logout.svg"), url("/home/tom/.icons/Papirus-Dark/128x128/apps/xfsm-logout.svg"));
 }
 
 #suspend {
-    background-image: image(url("/home/tom/.local/share/icons/GNUstep/apps/48/preferences-system-time.png"), url("/home/tom/.local/share/icons/GNUstep/apps/48/preferences-system-time.png"));
+    background-image: image(url("/home/tom/.icons/Papirus-Dark/128x128/apps/xfpm-suspend.svg"), url("/home/tom/.icons/Papirus-Dark/128x128/apps/xfpm-suspend.svg"));
 }
 
 #hibernate {
-    background-image: image(url("/home/tom/.local/share/icons/GNUstep/actions/48/application-exit-symbolic.png"), url("/home/tom/.local/share/icons/GNUstep/actions/48/application-exit-symbolic.png"));
+    background-image: image(url("/home/tom/.icons/Papirus-Dark/128x128/apps/xfsm-hibernate.svg"), url("/home/tom/.icons/Papirus-Dark/128x128/apps/xfsm-hibernate.svg"));
 }
 
 #shutdown {
-    background-image: image(url("/home/tom/.local/share/icons/GNUstep/devices/48/computer-laptop.png"), url("/home/tom/.local/share/icons/GNUstep/devices/48/computer-laptop.png"));
+    background-image: image(url("/home/tom/.icons/Papirus-Dark/128x128/apps/xfsm-shutdown.svg"), url("/home/tom/.icons/Papirus-Dark/128x128/apps/xfsm-shutdown.svg"));
 }
 
 #reboot {
-    background-image: image(url("/home/tom/.local/share/icons/GNUstep/actions/48/system-reboot.png"), url("/usr/share/wlogout/icons/reboot.png"));
+    background-image: image(url("/home/tom/.icons/Papirus-Dark/128x128/apps/xfsm-reboot.svg"), url("/home/tom/.icons/Papirus-Dark/128x128/apps/xfsm-reboot.svg"));
 }

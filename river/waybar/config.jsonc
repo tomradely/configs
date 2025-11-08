@@ -7,7 +7,8 @@
     "spacing": 4, // Gaps between modules (4px)
     // Choose the order of the modules
     "modules-left": [
-	"river/tags"
+	"river/tags",
+	"river/layout"
     ],
     "modules-center": [
 	"river/window"
@@ -25,6 +26,12 @@
 	    "num-tags": 9,
 	    "tag-labels": [ "甲", "乙", "丙", "丁", "戊", "己", "庚", "辛", "壬" ],
 	    "hide-vacant": true
+    },
+    "river/layout": {
+    	"format": "{}",
+    	"min-length": 4,
+    	"align": "right",
+	"on-click":"riverctl send-layout-cmd rivercarro \"main-location-cycle left,monocle\""
     },
     "river/window": {
 	    "max-length": 300,
