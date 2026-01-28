@@ -158,8 +158,9 @@ done
 
 # Set background and border color
 riverctl background-color 0x002b36
-riverctl border-color-focused 0x7fbbb3
-riverctl border-color-unfocused 0x83c092
+riverctl border-color-focused 0x83c092
+riverctl border-color-unfocused 0x7fbbb3
+riverctl border-width pixels 3
 
 # Make all views with an app-id that starts with "float" and title "foo" start floating.
 riverctl rule-add -app-id 'float*' -title 'foo' float
@@ -196,7 +197,7 @@ riverctl xcursor-theme Future-cursors
 # Autostart
 riverctl spawn "dbus-update-activation-environment systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=river"
 riverctl spawn "systemctl --user import-environment WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=river"
-riverctl spawn "wlr-randr --output eDP-1 --scale 1.5"
+riverctl spawn "kanshi"
 riverctl spawn "wbg /home/tom/Pictures/gardenofwords1.jpg"
 riverctl spawn "waybar -c /home/tom/.config/river/waybar/config.jsonc"
 riverctl spawn "/home/tom/.config/dwl/swayidle.sh"
